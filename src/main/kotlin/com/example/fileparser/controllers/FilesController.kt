@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController
  * Controller for uploading files.
  */
 @RestController
-@RequestMapping("/api/v1/upload")
-class UploadController(
+@RequestMapping("/api/v1/files")
+class FilesController(
     private val fileParserService: FileParserService,
 ) {
-    @PostMapping("/uploadFile")
+    @PostMapping
     fun uploadFile(
         @Valid @RequestBody request: UploadFileRequest
     ): ResponseEntity<Any> {
