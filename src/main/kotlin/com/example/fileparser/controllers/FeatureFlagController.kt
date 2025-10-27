@@ -50,5 +50,4 @@ class FeatureFlagController(
 
         return featureFlagService.getFlag(flag = flag)
     }
-
 }
