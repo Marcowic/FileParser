@@ -25,7 +25,7 @@ class FeatureFlagController(
     ): ResponseEntity<Any> {
 
         val flag = FeatureFlagKey.fromString(name = flagToUpdate)
-            ?: return ResponseEntity.status(400)
+            ?: return ResponseEntity.badRequest()
                 .body(mapOf("error" to "Invalid feature flag: $flagToUpdate"))
 
         val newStatus = body.status
@@ -45,7 +45,7 @@ class FeatureFlagController(
         @PathVariable flagToCheck: String
     ): ResponseEntity<Any> {
         val flag = FeatureFlagKey.fromString(name = flagToCheck)
-            ?: return ResponseEntity.status(400)
+            ?: return ResponseEntity.badRequest()
                 .body(mapOf("error" to "Invalid feature flag: $flagToCheck"))
 
         return featureFlagService.getFlag(flag = flag)

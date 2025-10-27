@@ -41,7 +41,7 @@ class FeatureFlagService {
             }
 
             else -> {
-                return ResponseEntity.status(400).body(
+                return ResponseEntity.badRequest().body(
                     mapOf(
                         "message" to "Flag ${flag.simpleName} already set to $status"
                     )
@@ -65,5 +65,9 @@ class FeatureFlagService {
                 )
             )
         }
+    }
+
+    fun isFlagEnabled(flag: FeatureFlagKey): Boolean {
+        return flagMap[flag] ?: false
     }
 }
