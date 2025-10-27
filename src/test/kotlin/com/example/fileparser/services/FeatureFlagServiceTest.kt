@@ -1,12 +1,15 @@
 package com.example.fileparser.services
 
 import com.example.fileparser.utils.FeatureFlagKey
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class FeatureFlagServiceTest {
 
@@ -81,4 +84,23 @@ class FeatureFlagServiceTest {
         val status = (body as Map<*, *>)["status"]
         assertEquals(expected = expected, actual = status)
     }
+
+    @Test
+    fun `isFlagEnabled should return the default value false for any valid flag`() {
+        val status = featureFlagService.isFlagEnabled(FeatureFlagKey.fromString("skip-file-validation")!!)
+
+        assertFalse(status)
+    }
+
+    @Test
+    fun `isFlagEnabled should return the value true when enabled`() {
+        val flag = FeatureFlagKey.fromString("skip-file-validation")!!
+
+        featureFlagService.updateFlag(flag = flag, status = true)
+
+        val status = featureFlagService.isFlagEnabled(flag)
+
+        assertTrue(status)
+    }
+
 }
