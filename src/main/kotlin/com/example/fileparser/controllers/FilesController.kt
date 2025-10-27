@@ -1,13 +1,13 @@
 package com.example.fileparser.controllers
 
-import com.example.fileparser.dtos.UploadFileRequest
 import com.example.fileparser.services.FileParserService
-import jakarta.validation.Valid
+import com.example.fileparser.validators.FileValidator
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestPart
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.multipart.MultipartFile
 
 /**
  * Controller for uploading files.
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/files")
 class FilesController(
     private val fileParserService: FileParserService,
+    private val fileValidator: FileValidator,
 ) {
-    @PostMapping
+    @PostMapping("/upload", consumes = ["multipart/form-data"])
     fun uploadFile(
-        @Valid @RequestBody request: UploadFileRequest
+        @RequestPart("file", required = true) file: MultipartFile,
     ): ResponseEntity<Any> {
-        return fileParserService.process(request)
+        return fileParserService.processFile(file = file)
     }
-
 }
