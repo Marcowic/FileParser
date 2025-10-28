@@ -38,7 +38,7 @@ class FileParserService(
                 val resource = ByteArrayResource(jsonBytes)
 
                 return ResponseEntity.ok()
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"result.json\"")
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"OutcomeFile.json\"")
                     .contentType(MediaType.APPLICATION_JSON).body(resource)
 
             } catch (ex: Exception) {
@@ -114,4 +114,3 @@ class FileParserService(
 }
 
 class InvalidRecordFormatException(message: String) : IllegalArgumentException(message)
-
