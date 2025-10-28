@@ -22,6 +22,6 @@ Control the feature flag by using `PATCH /api/v1/flags/{flag}` providing a `stat
 
 Use `GET /api/v1/flags/{flag}` to fetch the status of `flag`.
 
-i.e. To control and see the status of `skip-file-validation` feature flag, use `PATCH /api/v1/flags/skip-file-validation`
+i.e. To change the status of `skip-file-validation` feature flag, use `PATCH /api/v1/flags/skip-file-validation`
 
 ![flag.png](flag.png)
