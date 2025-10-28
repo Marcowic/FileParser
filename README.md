@@ -2,6 +2,8 @@
 
 # Run Steps
 
+I used Kotlin compiler v1.8.22 / Java compiler v17.0.16
+
 Run the spring server: `./gradlew bootRun`
 
 # Usage
