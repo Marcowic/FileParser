@@ -12,14 +12,16 @@ By default, the spring server should run on http://localhost:8080
 
 Use that as the base URL and append the following endpoints. I used PostMan for testing.
 
-To upload the resource file, use `/api/v1/files/upload` and attach the file to the request.
+To upload the resource file, use `POST /api/v1/files/upload` and attach the file to the request.
 
 In PostMan, add the file to the form-data, and select the `Send and Download` option when sending the request:
 
 ![upload.png](upload.png)
 
-Control the feature flag by using `/api/v1/flags/{flag}` providing a `status` field for a boolean in the request body.
+Control the feature flag by using `PATCH /api/v1/flags/{flag}` providing a `status` field for a boolean in the request body.
 
-i.e. To control and see the status of `skip-file-validation` feature flag, use `/api/v1/flags/skip-file-validation`
+Use `GET /api/v1/flags/{flag}` to fetch the status of `flag`.
+
+i.e. To control and see the status of `skip-file-validation` feature flag, use `PATCH /api/v1/flags/skip-file-validation`
 
 ![flag.png](flag.png)
